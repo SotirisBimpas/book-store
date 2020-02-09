@@ -1,0 +1,25 @@
+.searchbar {
+	width: 100%;
+	border: 1px solid black;
+}
+.results {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	border: 1px solid black;
+}
+.book {
+	width: calc(100% - 20px);
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	border: 1px solid black;
+}
+.image {
+	width: 150px;
+	height: 150px;
+	border: 1px solid black;
+}
