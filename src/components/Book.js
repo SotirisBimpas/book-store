@@ -5,6 +5,7 @@ import styles from './Book.module.css';
 
 export default function Book(props) {
   const {
+    animate,
     handleRating,
     index,
     book,
@@ -18,17 +19,22 @@ export default function Book(props) {
     bookRating,
   } = styles;
 
+  const animation = {
+    animation: !animate && 'none',
+    animationDelay: `${index * 50}ms`,
+  }
+
 	return (
 		<div className={bookThumbContainer}>
-      <div className={bookThumb} style={{animationDelay: `${index * 50}ms`}} >
+      <div className={bookThumb} style={animation} >
         <div className={bookImage}>image</div>
         <div className={bookTitle}>{title}</div>
         <div className={bookRating}>
           <Rating
-                icon='star'
-                defaultRating={rating}
-                maxRating={5}
-                onRate={(e, data) => handleRating({...book, rating: data.rating})}
+            icon='star'
+            defaultRating={rating}
+            maxRating={5}
+            onRate={(e, data) => handleRating({...book, rating: data.rating})}
           />
         </div>
           </div>
@@ -37,6 +43,8 @@ export default function Book(props) {
 }
 
 Book.propTypes = {
+  animate: PropTypes.bool.isRequired,
   handleRating: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
   book: PropTypes.object.isRequired,
 };

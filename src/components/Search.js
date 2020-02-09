@@ -93,10 +93,16 @@ export default function Search() {
         {state.loading && <p>loading...</p>}
         {state.error && <p>Error...</p>}
         {!state.searchResutls && state.books && state.books.map((b, i) => (
-          <Book  index={i} key={b.isbn} book={b} handleRating={handleRating} />
+          <Book
+            index={i}
+            key={b.isbn}
+            book={b}
+            handleRating={handleRating}
+            animate
+          />
         ))}
-        {state.searchResutls && state.searchResutls.map((b) => (
-          <Book  key={b.isbn} book={b} handleRating={handleRating} />
+        {state.searchResutls && state.searchResutls.map((b, i) => (
+          <Book key={b.isbn} book={b} handleRating={handleRating} />
         ))}
       </div>
     </>
