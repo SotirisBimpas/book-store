@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
 import Book from './Book';
 import styles from './Search.module.css';
@@ -75,6 +76,7 @@ export default function Search() {
     filters,
     filterIcon,
     bookList,
+    btnAddProduct,
   } = styles;
 
   return (
@@ -104,6 +106,9 @@ export default function Search() {
         {state.searchResutls && state.searchResutls.map((b, i) => (
           <Book key={b.isbn} book={b} handleRating={handleRating} />
         ))}
+        <div className={btnAddProduct}>
+          <Link to="/add-product">+</Link>
+        </div>
       </div>
     </>
   )
