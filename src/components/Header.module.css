@@ -1,0 +1,10 @@
+header {
+	height: 12vh;
+	width: 100%;
+	padding: var(--space-half);
+}
+.logo {
+	border: 1px solid black;
+	font-weight: var(--weight-bolder);
+	text-align: center;
+}
