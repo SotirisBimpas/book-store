@@ -1,0 +1,6 @@
+footer {
+	height: 8vh;
+	line-height: 8vh;
+	padding: 0 var(--space-half);
+	text-align: right;
+}

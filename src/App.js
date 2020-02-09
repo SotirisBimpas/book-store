@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './components/Header';
+import Layout from './components/Layout';
 import Search from './components/Search';
 import Product from './components/Product';
 import AddProduct from './components/AddProduct';
@@ -11,12 +11,13 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Search} />
-          <Route path="/product" component={Product} />
-          <Route path="/add-product" component={AddProduct} />
-        </Switch>  
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={Search} />
+            <Route path="/product" component={Product} />
+            <Route path="/add-product" component={AddProduct} />
+          </Switch>  
+        </Layout>
       </div>
     </Router>
   );
