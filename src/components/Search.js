@@ -1,57 +1,15 @@
-import React, { useReducer, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
+import Context from '../context';
 import Book from './Book';
 import styles from './Search.module.css';
 
 export default function Search() {
-  const initialState = {
-    loading: false,
-    error: false,
-    books: null,
-    searchResutls: null,
-  };
-
-  const reducer = (state, action) => {
-    const { type, payload } = action;
-    switch(type) {
-      case 'LOADING':
-        return { loading: true, error: false, books: null };
-      case 'ERROR':
-        return { loading: false, error: true, books: null };
-      case 'SET_BOOKS':
-        return { loading: false, error: false, books: payload };
-      case 'SEARCH_BOOKS':
-        return { ...state, searchResutls: payload };
-      case 'UPDATE_BOOK':
-        return { ...state, books: payload}
-      default:
-        return { ...state };
-    }
-  }
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(
-    () => {
-      dispatch({ type: 'LOADING', payload: {} });
-      axios('https://api.github.com/gists/6396437')
-        .then(res => {
-          const data = res.data.files['books.json'].content;
-          const fixedDataString = data.replace(/'/g, '’').replace(' "You Don’t Know JS" ', ' You Don’t Know JS ');
-          const parsedData = JSON.parse(fixedDataString);
-          dispatch({ type: 'SET_BOOKS', payload: parsedData.books });
-        })
-        .catch(err => {
-          dispatch({ type: 'ERROR', payload: {} });
-        });
-    },
-    []
-  )
-
+  const { state, actions: { searchBooks, updateBook }} = useContext(Context);
+  
   const handleSearchChange = (query) => {
-    const searchResutls = state.books.filter(
+    const filteredBooks = state.books.filter(
       (book) => {
         return (
           book.title.includes(query)
@@ -61,14 +19,14 @@ export default function Search() {
         )
       }
     );
-    dispatch({ type: 'SEARCH_BOOKS', payload: searchResutls });
+    searchBooks(filteredBooks);
   }
 
   const handleRating = (updatedBook) => {
     const updatedBookIndex = state.books.findIndex(b => b.isbn === updatedBook.isbn);
     const updatedBookList = [...state.books]
     updatedBookList.splice(updatedBookIndex, 1, updatedBook);
-    dispatch({ type: 'UPDATE_BOOK', payload: updatedBookList })
+    updateBook(updatedBookList);
   }
 
   const {
@@ -94,7 +52,7 @@ export default function Search() {
       <div className={bookList}>
         {state.loading && <p>loading...</p>}
         {state.error && <p>Error...</p>}
-        {!state.searchResutls && state.books && state.books.map((b, i) => (
+        {!state.filteredBooks && state.books && state.books.map((b, i) => (
           <Book
             index={i}
             key={b.isbn}
@@ -103,7 +61,7 @@ export default function Search() {
             animate
           />
         ))}
-        {state.searchResutls && state.searchResutls.map((b, i) => (
+        {state.filteredBooks && state.filteredBooks.map((b, i) => (
           <Book key={b.isbn} book={b} handleRating={handleRating} />
         ))}
         <div className={btnAddProduct}>
