@@ -1,0 +1,47 @@
+.bookThumbContainer {
+	width: 25%;
+	height: 250px;
+	transition: all 150ms ease;
+}
+.bookThumb {
+	padding: 10px;
+	margin: 0 auto;
+	width: 90%;
+	height: 90%;
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	text-align: center;
+	animation: fade-in 300ms both 1;
+	/* animation-delay is set in Book component */ 
+}
+.bookThumb:hover {
+	background-color: #ecf0f1;
+	transition: all 150ms ease;
+}
+.bookTitle {
+	width: 10rem;
+}
+.bookImage {
+	width: 10rem;
+	height: 10rem;
+	border: 1px solid black;
+}
+.bookRating {
+
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+		transform: translate(0, 100px);
+	}
+	to {
+		opacity: 1;
+		transform: translate(0, 0);
+	}
+}
