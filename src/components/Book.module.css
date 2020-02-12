@@ -16,7 +16,7 @@
 	border: 1px solid #eee;
 	border-radius: 5px;
 	text-align: center;
-	animation: fade-in 300ms both 1;
+	animation: fade-in 500ms both 1;
 	/* animation-delay is set in Book component */ 
 }
 .bookThumb:hover {
@@ -38,7 +38,7 @@
 @keyframes fade-in {
 	from {
 		opacity: 0;
-		transform: translate(0, 100px);
+		transform: translate(0, 50px);
 	}
 	to {
 		opacity: 1;

@@ -43,3 +43,20 @@ body {
 p {
 	margin: 0 !important;
 }
+
+.ui.error>input {
+	border: 1px solid red !important;
+}
+.ui.label.label {
+	width: 100px;
+	text-align: center;
+}
+.field {
+	margin-bottom: var(--space-default) !important;
+}
+.field > .ui.labeled.input {
+	width: calc(100% - var(--space-default)) !important;
+}
+.field > .ui.labeled.input {
+	width: calc(100% - var(--space-default)) !important;
+}

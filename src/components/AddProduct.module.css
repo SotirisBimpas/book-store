@@ -1,0 +1,65 @@
+.formContainer { 
+}
+.addBookForm {
+  padding: var(--space-half);
+  padding-bottom: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+.addImageBtnContainer {
+  grid-column-start: 2;
+  grid-row: 1 / 3;
+}
+.addImageBtn {
+  height: 100%;
+  width: calc(100% - var(--space-default));
+  border: 1px solid #eee;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.submitBtn {
+  margin: 0 var(--space-half) !important;
+}
+.errorMessage {
+  position: absolute;
+  padding: 0 var(--space-quarter);
+  border-radius: 0 0 5px 5px;
+  background-color: red;
+  color: white;
+}
+.successMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(150, 150, 150, .7);
+  width: 50%;
+  height: 50%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+}
+.successMessage > p {
+  font-size: 2.5rem;
+  font-weight: var(--weight-bolder);
+  margin-bottom: var(--space-double) !important;
+}
+.successMessageIcon {
+  height: 8rem !important;
+  width: 8rem !important;
+  background-color: white;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid green;
+  color: green;
+}

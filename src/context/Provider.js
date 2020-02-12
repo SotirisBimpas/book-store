@@ -22,6 +22,9 @@ export default function Provider(props) {
         return { loading: false, error: false, books: payload };
       case 'SEARCH_BOOKS':
         return { ...state, filteredBooks: payload };
+      case 'ADD_BOOK':
+      console.log(payload)
+        return { ...state, books: [...state.books, payload]}
       case 'UPDATE_BOOK':
         return { ...state, books: payload}
       default:
@@ -49,8 +52,9 @@ export default function Provider(props) {
   )
 
   const searchBooks = (filteredBooks) => dispatch({ type: 'SEARCH_BOOKS', payload: filteredBooks }); 
+  const addBook = (addedBook) => dispatch({ type: 'ADD_BOOK', payload: addedBook });
   const updateBook = (updatedBookList) => dispatch({ type: 'UPDATE_BOOK', payload: updatedBookList });
-  const actions = { searchBooks, updateBook };
+  const actions = { searchBooks, addBook, updateBook };
 
 	return (
 		<Context.Provider value={{state, actions}}>
