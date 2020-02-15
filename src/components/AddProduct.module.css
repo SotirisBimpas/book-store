@@ -21,8 +21,12 @@
   align-items: center;
   justify-content: center;
 }
+.submitBtnContainer {
+  grid-column-start: 1;
+  grid-row: 7 / 8;
+}
 .submitBtn {
-  margin: 0 var(--space-half) !important;
+  width: 50%;
 }
 .errorMessage {
   position: absolute;

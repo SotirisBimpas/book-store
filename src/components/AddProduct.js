@@ -101,7 +101,6 @@ export default function AddProduct() {
   const [successMessageIsOpen, setSuccessMesssageIsOpen] = useState(false);
 
   const closeSuccessMesssage = () => {
-    console.log('success')
     setSuccessMesssageIsOpen(false)
   }
 
@@ -152,6 +151,7 @@ export default function AddProduct() {
     addImageBtnContainer,
     addImageBtn,
     submitBtn,
+    submitBtnContainer
   } = styles;
 
   const renderSuccessMessage = () => (
@@ -171,6 +171,7 @@ export default function AddProduct() {
     <>
       <Button
         className={addImageBtn}
+        tabIndex={2}
         onClick={() => inputRef.current.click()}
         color={state.image.error ? 'red' : 'grey'}
       >
@@ -197,33 +198,35 @@ export default function AddProduct() {
     <>
       <div className={formContainer}>
         <Form className={addBookForm}>
-            {Object.keys(state).filter(k => k !== 'image').map(key => {
-              const { value, instructions, error, success } = state[key];
-              return (
-                <Form.Field>
-                  <Input
-                    className={`${key}-input`}
-                    onChange={e => setState({ ...state, [key]: { ...state[key], value: e.target.value }}) }
-                    onBlur={e => validateValue(e.target.value, key)}
-                    value={value}
-                    placeholder={instructions}
-                    label={key}
-                    error={error}
-                    icon={success && 'check'}
-                  />
-                  {
-                    (key === 'categories' || key === 'author(s)')
-                      && <Icon name='plus' /> // TODO add new property functionality
-                  }
-                  {value && error && <p className={errorMessage}>{instructions}</p>}
-                </Form.Field>
-              )
-            })}
-            <Form.Field className={addImageBtnContainer}>
-              {renderSubmitButton()}
-            </Form.Field>
+          {Object.keys(state).filter(k => k !== 'image').map(key => {
+            const { value, instructions, error, success } = state[key];
+            return (
+              <Form.Field>
+                <Input
+                  className={`${key}-input`}
+                  onChange={e => setState({ ...state, [key]: { ...state[key], value: e.target.value }}) }
+                  onBlur={e => validateValue(e.target.value, key)}
+                  value={value}
+                  placeholder={instructions}
+                  label={key}
+                  error={error}
+                  icon={success && 'check'}
+                />
+                {
+                  (key === 'categories' || key === 'author(s)')
+                    && <Icon name='plus' /> // TODO add new property functionality
+                }
+                {value && error && <p className={errorMessage}>{instructions}</p>}
+              </Form.Field>
+            )
+          })}
+          <Form.Field className={submitBtnContainer}>
+            <Button className={submitBtn} onClick={() => handleSubmit(state)}>Submit</Button>
+          </Form.Field>
+          <Form.Field className={addImageBtnContainer}>
+            {renderSubmitButton()}
+          </Form.Field>
         </Form>
-        <Button className={submitBtn} onClick={() => handleSubmit(state)}>Submit</Button>
         {successMessageIsOpen && renderSuccessMessage()}
       </div>
     </>
