@@ -6,7 +6,7 @@ import Book from './Book';
 import styles from './Search.module.css';
 
 export default function Search() {
-  const { state, actions: { searchBooks, updateBook }} = useContext(Context);
+  const { state, actions: { searchBooks, updateBook, handleRating }} = useContext(Context);
   
   const handleSearchChange = (query) => {
     const filteredBooks = state.books.filter(
@@ -20,13 +20,6 @@ export default function Search() {
       }
     );
     searchBooks(filteredBooks);
-  }
-
-  const handleRating = (updatedBook) => {
-    const updatedBookIndex = state.books.findIndex(b => b.isbn === updatedBook.isbn);
-    const updatedBookList = [...state.books]
-    updatedBookList.splice(updatedBookIndex, 1, updatedBook);
-    updateBook(updatedBookList);
   }
 
   const {

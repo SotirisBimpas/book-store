@@ -3,4 +3,5 @@ footer {
 	line-height: 8vh;
 	padding: 0 var(--space-half);
 	text-align: right;
+	border: 1px solid red;
 }

@@ -5,8 +5,8 @@ import styles from './Header.module.css';
 
 export default function Header() {
 	const { location: { pathname } } = useHistory();
-	const crumbs = pathname.split('/').filter(c => c !== '');
-
+	const crumbs = pathname.split(':')[0].split('/').filter(c => c !== '');
+	console.log(crumbs)
 	const { logo } = styles;
 
 	return (

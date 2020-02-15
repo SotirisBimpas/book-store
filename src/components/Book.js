@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import styles from './Book.module.css';
@@ -9,7 +10,7 @@ export default function Book(props) {
     handleRating,
     index,
     book,
-    book: { title, rating },
+    book: { title, rating, isbn },
   } = props;
   const {
     bookThumbContainer,
@@ -25,20 +26,26 @@ export default function Book(props) {
   }
 
 	return (
-		<div className={bookThumbContainer}>
-      <div className={bookThumb} style={animation} >
-        <div className={bookImage}>image</div>
-        <div className={bookTitle}>{title}</div>
-        <div className={bookRating}>
-          <Rating
-            icon='star'
-            defaultRating={rating}
-            maxRating={5}
-            onRate={(e, data) => handleRating({...book, rating: data.rating})}
-          />
-        </div>
+  		<div className={bookThumbContainer}>
+        <Link to={{
+          pathname: `/product/:${isbn.replace(/ /g, '-')}`,
+          state: book
+        }}
+        >
+        <div className={bookThumb} style={animation} >
+          <div className={bookImage}>image</div>
+          <div className={bookTitle}>{title}</div>
+          <div className={bookRating}>
+            <Rating
+              icon='star'
+              defaultRating={rating}
+              maxRating={5}
+              onRate={(e, data) => handleRating({...book, rating: data.rating})}
+            />
           </div>
-    </div>
+            </div>
+    </Link>
+      </div>
 	)
 }
 
