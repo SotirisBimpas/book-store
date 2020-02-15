@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Rating } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import UserRating from './UserRating';
 import styles from './Book.module.css';
 
 export default function Book(props) {
@@ -26,26 +27,21 @@ export default function Book(props) {
   }
 
 	return (
-  		<div className={bookThumbContainer}>
-        <Link to={{
-          pathname: `/product/:${isbn.replace(/ /g, '-')}`,
-          state: book
-        }}
-        >
+		<div className={bookThumbContainer}>
+      <Link to={{
+        pathname: `/product/:${isbn.replace(/ /g, '-')}`,
+        state: book
+      }}
+      >
         <div className={bookThumb} style={animation} >
           <div className={bookImage}>image</div>
           <div className={bookTitle}>{title}</div>
           <div className={bookRating}>
-            <Rating
-              icon='star'
-              defaultRating={rating}
-              maxRating={5}
-              onRate={(e, data) => handleRating({...book, rating: data.rating})}
-            />
+            <UserRating book={book} />
           </div>
-            </div>
-    </Link>
-      </div>
+        </div>
+      </Link>
+    </div>
 	)
 }
 

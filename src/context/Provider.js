@@ -51,17 +51,10 @@ export default function Provider(props) {
     []
   )
 
-  const handleRating = (updatedBook) => {
-    const updatedBookIndex = state.books.findIndex(b => b.isbn === updatedBook.isbn);
-    const updatedBookList = [...state.books]
-    updatedBookList.splice(updatedBookIndex, 1, updatedBook);
-    updateBook(updatedBookList);
-  }
-
   const searchBooks = (filteredBooks) => dispatch({ type: 'SEARCH_BOOKS', payload: filteredBooks }); 
   const addBook = (addedBook) => dispatch({ type: 'ADD_BOOK', payload: addedBook });
   const updateBook = (updatedBookList) => dispatch({ type: 'UPDATE_BOOK', payload: updatedBookList });
-  const actions = { handleRating, searchBooks, addBook, updateBook };
+  const actions = { searchBooks, addBook, updateBook };
 
 	return (
 		<Context.Provider value={{state, actions}}>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Button, Icon, Rating } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 import { Carousel } from 'primereact/carousel';
 import Context from '../context';
+import UserRating from './UserRating';
 import styles from './Product.module.css';
 
 export default function Product() {
@@ -48,19 +49,6 @@ export default function Product() {
     )
   }
 
-  const renderRating = (b) => {
-    console.log(b.rating)
-    return (
-			<Rating
-        icon="star"
-        defaultRating={b.rating}
-        maxRating={5}
-        size='large'
-        onRate={(e, data) => handleRating({...b, rating: data.rating})}
-      />
-    )
-  }
-
 	return <>
 		{
 			state &&
@@ -73,7 +61,7 @@ export default function Product() {
             <Icon name="user" circular size="big" />
             <p>{state.author}</p>
           </div>
-          {renderRating(state)}
+          <UserRating book={state} />
         </div>
 				<div className={productInfo}>
           <h2 className={productTitle}>{state.title}</h2>

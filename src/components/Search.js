@@ -6,7 +6,7 @@ import Book from './Book';
 import styles from './Search.module.css';
 
 export default function Search() {
-  const { state, actions: { searchBooks, updateBook, handleRating }} = useContext(Context);
+  const { state, actions: { searchBooks, updateBook }} = useContext(Context);
   
   const handleSearchChange = (query) => {
     const filteredBooks = state.books.filter(
@@ -50,12 +50,11 @@ export default function Search() {
             index={i}
             key={b.isbn}
             book={b}
-            handleRating={handleRating}
             animate
           />
         ))}
         {state.filteredBooks && state.filteredBooks.map((b, i) => (
-          <Book key={b.isbn} book={b} handleRating={handleRating} />
+          <Book key={b.isbn} book={b} />
         ))}
         <div className={btnAddProduct}>
           <Link to="/add-product">+</Link>
