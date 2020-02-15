@@ -29,7 +29,9 @@
 .bookImage {
 	width: 10rem;
 	height: 10rem;
-	border: 1px solid black;
+}
+.bookImage > img {
+	height: 100%;
 }
 .bookRating {
 

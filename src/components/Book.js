@@ -34,7 +34,9 @@ export default function Book(props) {
       }}
       >
         <div className={bookThumb} style={animation} >
-          <div className={bookImage}>image</div>
+          <div className={bookImage}>
+            <img src={`/img/${book.title}.jpg`} alt="sss" />
+          </div>
           <div className={bookTitle}>{title}</div>
           <div className={bookRating}>
             <UserRating book={book} />

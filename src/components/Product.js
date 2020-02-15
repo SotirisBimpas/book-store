@@ -42,7 +42,9 @@ export default function Product() {
           pathname: `/product/:${isbn.replace(/ /g, '-')}`,
           state: book
         }}>
-          <div className={relatedProductImage} />
+          <div className={relatedProductImage}>
+            <img src={`/img/${book.title}.jpg`} alt="sss" className={productImage} />
+          </div>
           <p>{book.title}</p>
         </Link>
       </div>
@@ -55,7 +57,7 @@ export default function Product() {
 			<div className={productContainer}>
 				<div className={productBasicInfo}>
           <div className={productImageContainer}>
-            <img src="/img/" alt="sss" className={productImage} />
+            <img src={`/img/${state.title}.jpg`} alt="sss" className={productImage} />
           </div>
           <div className={productAuthor} >
             <Icon name="user" circular size="big" />
