@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Provider from './context/Provider';
 import Layout from './components/Layout';
 import Search from './components/Search';
@@ -18,9 +18,10 @@ function App() {
         <div className="App">
           <Layout>
             <Switch>
-              <Route exact path="/" component={Search} />
+              <Route exact path="/search" component={Search} />
               <Route path="/product/:isbn" component={Product} />
               <Route path="/add-product" component={AddProduct} />
+              <Redirect to="/search" />
             </Switch>
           </Layout>
         </div>
