@@ -21,6 +21,7 @@ export default function Search() {
   };
 
   const {
+    searchbarContainer,
     searchbar,
     filters,
     filterIcon,
@@ -32,12 +33,15 @@ export default function Search() {
 
   return (
     <>
-      <input
-        className={searchbar}
-        type="text"
-        placeholder="Search..."
-        onChange={(e) => handleSearchChange(e.target.value)}
-      />
+      <div className={searchbarContainer}>
+        <input
+          className={searchbar}
+          type="text"
+          placeholder="Categories, description, author"
+          onChange={(e) => handleSearchChange(e.target.value)}
+        />
+        <Icon name="search" size="large" />
+      </div>
       <div className={filters}>
         <p>Filters</p>
         <Icon name="filter" size="small" className={filterIcon} />
