@@ -15,20 +15,26 @@
 	align-items: center;
 	border: 1px solid #eee;
 	border-radius: 5px;
+	box-shadow: 0px 6px 12px rgba(230, 230, 230, .5);
 	text-align: center;
+	transition: all 150ms ease;
 	animation: fade-in 500ms both 1;
 	/* animation-delay is set in Book component */ 
 }
 .bookThumb:hover {
-	background-color: #ecf0f1;
+	/*background-color: #E100FF;*/
+	/*border: 1px solid #E100FF;*/
+	box-shadow: 0 4px 8px rgba(230, 230, 230, .025), 0 15px 40px rgba(200, 200, 200,.2);
+	width: 95%;
+	height: 95%;	
 	transition: all 150ms ease;
 }
 .bookTitle {
-	width: 10rem;
+	width: 12rem;
 }
 .bookImage {
 	width: 10rem;
-	height: 10rem;
+	height: 71%;
 }
 .bookImage > img {
 	height: 100%;
