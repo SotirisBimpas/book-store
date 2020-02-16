@@ -21,7 +21,7 @@ function App() {
               <Route exact path="/" component={Search} />
               <Route path="/product/:isbn" component={Product} />
               <Route path="/add-product" component={AddProduct} />
-            </Switch>  
+            </Switch>
           </Layout>
         </div>
       </Router>

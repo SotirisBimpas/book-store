@@ -1,0 +1,55 @@
+{
+  "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb", "plugin:jsx-a11y/recommended"],
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["react", "jsx-a11y"],
+  "rules": {
+    "arrow-parens": ["off"],
+    "consistent-return": "off",
+    "camelcase": "off",
+    "comma-dangle": "off",
+    "dot-location": ["error", "property"],
+    "dot-notation": ["error", {
+      "allowPattern": "^[A-z]"
+    }],
+    "generator-star-spacing": "off",
+    "import/no-unresolved": "error",
+    "import/no-extraneous-dependencies": "off",
+    "no-nested-ternary": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "no-console": "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["config"]
+      }
+    ],
+    "no-use-before-define": "off",
+    "no-multi-assign": "off",
+    "react/jsx-curly-brace-presence": [0],
+    "react/jsx-no-bind": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ]
+  }
+}

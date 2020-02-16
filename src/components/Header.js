@@ -4,30 +4,29 @@ import { Breadcrumb } from 'semantic-ui-react';
 import styles from './Header.module.css';
 
 export default function Header() {
-	const { location: { pathname } } = useHistory();
-	const crumbs = pathname.split(':')[0].split('/').filter(c => c !== '');
-	console.log(crumbs)
-	const { logo } = styles;
+  const { location: { pathname } } = useHistory();
+  const crumbs = pathname.split(':')[0].split('/').filter(c => c !== '');
+  const { logo } = styles;
 
-	return (
-		<header>
-			<h1 className={logo}>Bookstore</h1>
-			<Breadcrumb>
-				<Breadcrumb.Section>
-					<Link to="/">Home</Link>
-				</Breadcrumb.Section>
-				<Breadcrumb.Divider />
-				{crumbs.length > 0 && crumbs.map(
-					(path, i) => (
-						<Breadcrumb.Section key={path}>
-							<Link to={`${[...crumbs].slice(0, i + 1).join('/')}`}>
-								{path}
-							</Link>
-							<Breadcrumb.Divider />
-						</Breadcrumb.Section>
-					)
-				)}
-			</Breadcrumb>
-		</header>
-	);
+  return (
+    <header>
+      <h1 className={logo}>Bookstore</h1>
+      <Breadcrumb>
+        <Breadcrumb.Section>
+          <Link to="/">Home</Link>
+        </Breadcrumb.Section>
+        <Breadcrumb.Divider />
+        {crumbs.length > 0 && crumbs.map(
+          (path, i) => (
+            <Breadcrumb.Section key={path}>
+              <Link to={`${[...crumbs].slice(0, i + 1).join('/')}`}>
+                {path}
+              </Link>
+              <Breadcrumb.Divider />
+            </Breadcrumb.Section>
+          )
+        )}
+      </Breadcrumb>
+    </header>
+  );
 }

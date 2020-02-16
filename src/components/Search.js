@@ -6,21 +6,19 @@ import Book from './Book';
 import styles from './Search.module.css';
 
 export default function Search() {
-  const { state, actions: { searchBooks, updateBook }} = useContext(Context);
-  
+  const { state, actions: { searchBooks } } = useContext(Context);
+
   const handleSearchChange = (query) => {
     const filteredBooks = state.books.filter(
-      (book) => {
-        return (
-          book.title.includes(query)
-          || book.subtitle.includes(query)
-          || book.description.includes(query)
-          || book.author.includes(query)
-        )
-      }
+      (book) => (
+        book.title.includes(query)
+        || book.subtitle.includes(query)
+        || book.description.includes(query)
+        || book.author.includes(query)
+      )
     );
     searchBooks(filteredBooks);
-  }
+  };
 
   const {
     searchbar,
@@ -29,6 +27,8 @@ export default function Search() {
     bookList,
     btnAddProduct,
   } = styles;
+
+  const showAllBooks = !state.filteredBooks && state.books;
 
   return (
     <>
@@ -40,12 +40,12 @@ export default function Search() {
       />
       <div className={filters}>
         <p>Filters</p>
-        <Icon name="filter" size="small" className={filterIcon} />  
+        <Icon name="filter" size="small" className={filterIcon} />
       </div>
       <div className={bookList}>
         {state.loading && <p>loading...</p>}
         {state.error && <p>Error...</p>}
-        {!state.filteredBooks && state.books && state.books.map((b, i) => (
+        {showAllBooks && state.books.map((b, i) => (
           <Book
             index={i}
             key={b.isbn}
@@ -53,7 +53,7 @@ export default function Search() {
             animate
           />
         ))}
-        {state.filteredBooks && state.filteredBooks.map((b, i) => (
+        {state.filteredBooks && state.filteredBooks.map(b => (
           <Book key={b.isbn} book={b} />
         ))}
         <div className={btnAddProduct}>
@@ -61,5 +61,5 @@ export default function Search() {
         </div>
       </div>
     </>
-  )
+  );
 }

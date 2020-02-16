@@ -1,5 +1,9 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
-import { Form, Input, Button, Icon } from 'semantic-ui-react';
+import React, {
+  useState, useEffect, useContext, useRef
+} from 'react';
+import {
+  Form, Input, Button, Icon
+} from 'semantic-ui-react';
 import Context from '../context';
 import styles from './AddProduct.module.css';
 
@@ -95,53 +99,57 @@ export default function AddProduct() {
       validation: /^(.*\.)(jpg|png|gif)$/,
       required: false,
     },
-  }
+  };
 
   const [state, setState] = useState(stateSchema);
   const [successMessageIsOpen, setSuccessMesssageIsOpen] = useState(false);
 
   const closeSuccessMesssage = () => {
-    setSuccessMesssageIsOpen(false)
-  }
+    setSuccessMesssageIsOpen(false);
+  };
 
-  const handleSubmit = (data) => {
+  const handleSubmit = () => {
     const errors = Object.keys(state).filter(key => {
-      const { value, validation, required } = state[key]; 
+      const { value, validation, required } = state[key];
       if (required || (!required && value)) return !validation.test(value);
       return false;
     });
     if (errors.length > 0) {
       let ipnutErrors = { ...state };
-      errors.forEach(err => { ipnutErrors = {...ipnutErrors, [err]: {...state[err], error: true} }})
-      setState(ipnutErrors)
+      errors.forEach(err => {
+        ipnutErrors = { ...ipnutErrors, [err]: { ...state[err], error: true } };
+      });
+      setState(ipnutErrors);
     } else {
-      let newBook = {}
-      Object.keys(state).map((key) => newBook = {...newBook, [key]: state[key].value}) 
-      addBook(newBook)
+      let newBook = {};
+      Object.keys(state).forEach(key => {
+        newBook = { ...newBook, [key]: state[key].value };
+      });
+      addBook(newBook);
       setState(stateSchema);
       setSuccessMesssageIsOpen(true);
     }
-  }
+  };
 
   const validateValue = (value, key) => {
     const isValid = state[key].validation.test(value);
     setState({ ...state, [key]: { ...state[key], error: !isValid, success: isValid } });
-  }
+  };
 
   const uploadImage = (e) => {
-    console.log(e.target.files[0])
+    console.log(e.target.files[0]);
     const { name } = e.target.files[0];
-    setState({ ...state, image: { ...state.image, value: name }});
-  }
+    setState({ ...state, image: { ...state.image, value: name } });
+  };
 
   useEffect(
     () => {
-      const timer = setTimeout(() => closeSuccessMesssage(), 1000)
-      return () => clearTimeout(timer)
+      const timer = setTimeout(() => closeSuccessMesssage(), 1000);
+      return () => clearTimeout(timer);
     },
     [successMessageIsOpen]
-  )
-  
+  );
+
   const {
     formContainer,
     errorMessage,
@@ -163,7 +171,7 @@ export default function AddProduct() {
         size="huge"
       />
     </div>
-  )
+  );
 
   const inputRef = useRef();
 
@@ -171,7 +179,6 @@ export default function AddProduct() {
     <>
       <Button
         className={addImageBtn}
-        tabIndex={2}
         onClick={() => inputRef.current.click()}
         color={state.image.error ? 'red' : 'grey'}
       >
@@ -182,7 +189,7 @@ export default function AddProduct() {
               <p>Import image</p>
               <p>.jpg, .png, .gif</p>
             </>
-          )               
+          )
         }
       </Button>
       <input
@@ -192,19 +199,27 @@ export default function AddProduct() {
         onChange={e => uploadImage(e)}
       />
     </>
-  )
+  );
 
   return (
     <>
       <div className={formContainer}>
         <Form className={addBookForm}>
           {Object.keys(state).filter(k => k !== 'image').map(key => {
-            const { value, instructions, error, success } = state[key];
+            const {
+              value, instructions, error, success
+            } = state[key];
             return (
               <Form.Field>
                 <Input
                   className={`${key}-input`}
-                  onChange={e => setState({ ...state, [key]: { ...state[key], value: e.target.value }}) }
+                  onChange={e => setState({
+                    ...state,
+                    [key]: {
+                      ...state[key],
+                      value: e.target.value
+                    }
+                  })}
                   onBlur={e => validateValue(e.target.value, key)}
                   value={value}
                   placeholder={instructions}
@@ -214,11 +229,11 @@ export default function AddProduct() {
                 />
                 {
                   (key === 'categories' || key === 'author(s)')
-                    && <Icon name='plus' /> // TODO add new property functionality
+                    && <Icon name="plus" /> // TODO add new property functionality
                 }
                 {value && error && <p className={errorMessage}>{instructions}</p>}
               </Form.Field>
-            )
+            );
           })}
           <Form.Field className={submitBtnContainer}>
             <Button className={submitBtn} onClick={() => handleSubmit(state)}>Submit</Button>
@@ -230,5 +245,5 @@ export default function AddProduct() {
         {successMessageIsOpen && renderSuccessMessage()}
       </div>
     </>
-  )
+  );
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Context from './Context';
 
-export default function Provider(props) {
+export default function Provider({ children }) {
   const initialState = {
     loading: false,
     error: false,
@@ -13,7 +13,7 @@ export default function Provider(props) {
 
   const reducer = (state, action) => {
     const { type, payload } = action;
-    switch(type) {
+    switch (type) {
       case 'LOADING':
         return { loading: true, error: false, books: null };
       case 'ERROR':
@@ -23,14 +23,13 @@ export default function Provider(props) {
       case 'SEARCH_BOOKS':
         return { ...state, filteredBooks: payload };
       case 'ADD_BOOK':
-      console.log(payload)
-        return { ...state, books: [...state.books, payload]}
+        return { ...state, books: [...state.books, payload] };
       case 'UPDATE_BOOK':
-        return { ...state, books: payload}
+        return { ...state, books: payload };
       default:
         return { ...state };
     }
-  }
+  };
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -45,24 +44,25 @@ export default function Provider(props) {
           dispatch({ type: 'SET_BOOKS', payload: parsedData.books });
         })
         .catch(err => {
+          console.log(err);
           dispatch({ type: 'ERROR', payload: {} });
         });
     },
     []
-  )
+  );
 
   const searchBooks = (filteredBooks) => dispatch({ type: 'SEARCH_BOOKS', payload: filteredBooks }); 
   const addBook = (addedBook) => dispatch({ type: 'ADD_BOOK', payload: addedBook });
   const updateBook = (updatedBookList) => dispatch({ type: 'UPDATE_BOOK', payload: updatedBookList });
   const actions = { searchBooks, addBook, updateBook };
 
-	return (
-		<Context.Provider value={{state, actions}}>
-			{props.children}
-		</Context.Provider>
-	)
+  return (
+    <Context.Provider value={{ state, actions }}>
+      {children}
+    </Context.Provider>
+  );
 }
 
 Provider.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
