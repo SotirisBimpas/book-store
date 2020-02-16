@@ -4,7 +4,7 @@ import React, {
 import {
   Form, Input, Button, Icon
 } from 'semantic-ui-react';
-import Context from '../context';
+import Context from '../../context';
 import styles from './AddProduct.module.css';
 
 export default function AddProduct() {

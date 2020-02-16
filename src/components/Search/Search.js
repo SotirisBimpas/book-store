@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
-import Context from '../context';
+import Context from '../../context';
 import Book from './Book';
 import styles from './Search.module.css';
 

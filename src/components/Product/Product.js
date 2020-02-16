@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
 import { Carousel } from 'primereact/carousel';
-import Context from '../context';
-import UserRating from './UserRating';
+import Context from '../../context';
+import UserRating from '../UserRating';
 import styles from './Product.module.css';
 
 export default function Product() {

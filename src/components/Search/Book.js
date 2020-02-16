@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import UserRating from './UserRating';
+import UserRating from '../UserRating';
 import styles from './Book.module.css';
 
 export default function Book(props) {
