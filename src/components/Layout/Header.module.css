@@ -1,10 +1,23 @@
 header {
-	height: 12vh;
+	height: 15%;
 	width: 100%;
-	padding: var(--space-half);
+	background-color: var(--yellow);
+	position: relative;
 }
 .logo {
-	border: 1px solid black;
+	color: #fff;
+	font-size: 5rem;
 	font-weight: var(--weight-bolder);
 	text-align: center;
+	margin: 0 !important;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -55%);
+}
+.breadcrumbs {
+	position: absolute;
+	bottom: var(--space-half);
+	left: calc(var(--space-half) + var(--space-default));
+	font-size: 1.2rem;
 }

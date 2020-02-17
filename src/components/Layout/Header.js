@@ -6,12 +6,12 @@ import styles from './Header.module.css';
 export default function Header() {
   const { location: { pathname } } = useHistory();
   const crumbs = pathname.split(':')[0].split('/').filter(c => c !== '');
-  const { logo } = styles;
+  const { logo, breadcrumbs } = styles;
 
   return (
     <header>
       <h1 className={logo}>Bookstore</h1>
-      <Breadcrumb>
+      <Breadcrumb className={breadcrumbs}>
         <Breadcrumb.Section>
           <Link to="/">Home</Link>
         </Breadcrumb.Section>

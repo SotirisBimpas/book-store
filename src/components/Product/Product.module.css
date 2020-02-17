@@ -55,7 +55,7 @@
 	width: 14rem;
 	margin: 0 auto;
 	padding: var(--space-half);
-	border: 1px solid #eee;
+	border: 1px solid var(--light-grey);
 	border-radius: 5px;
 	text-align: center;
 }

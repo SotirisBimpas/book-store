@@ -1,7 +1,7 @@
 footer {
-	height: 8vh;
-	line-height: 8vh;
+	height: 5%;
 	padding: 0 var(--space-half);
 	text-align: right;
-	border: 1px solid red;
+	background-color: var(--dark-turqoise);
+	color: #fff;
 }

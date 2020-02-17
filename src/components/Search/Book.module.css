@@ -6,16 +6,16 @@
 .bookThumb {
 	padding: 10px;
 	margin: 0 auto;
-	width: 90%;
+	width: calc(100% - var(--space-default));
 	height: 90%;
 	flex: 1 1 auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	border: 1px solid #eee;
+	border: 1px solid var(--light-grey);
 	border-radius: 5px;
-	box-shadow: 0px 6px 12px rgba(230, 230, 230, .5);
+	box-shadow: 0px 6px 12px rgba(var(--light-grey-rgb), .5);
 	text-align: center;
 	transition: all 150ms ease;
 	animation: fade-in 500ms both 1;
@@ -23,12 +23,11 @@
 }
 .bookThumb:focus,
 .bookThumb:hover {
-	width: 95%;
+	width: calc(105% - var(--space-default));
 	height: 95%;	
-	border: 1px solid #FFC70B;
-	box-shadow: 0 4px 8px rgba(230, 230, 230, .025), 0 15px 40px rgba(200, 200, 200,.2);
-	background-color: #FFC70B;
-	color: #fff;
+	border: 1px solid var(--yellow);
+	box-shadow: 0 4px 8px rgba(var(--light-grey-rgb), 1);
+	background-color: var(--yellow);
 	transition: all 150ms ease;
 	outline: none;
 }
@@ -41,14 +40,14 @@
 }
 .bookThumb:focus > .bookTitle,
 .bookThumb:hover > .bookTitle {
-	/*color: #fff;*/
-	/*font-weight: var(--weight-bold);*/
 	transition: all 100ms linear;
-	font-size: 1.3rem;
+	font-size: 1.4rem;
+	font-weight: var(--weight-bold);
+	/*color: #fff;*/
 }
 .bookTitle {
 	width: 90%;
-	color: rgba(47, 165, 173, 1);
+	color: rgba(var(--dark-turqoise-rgb), 1);
 	font-size: 1.2rem;
 	word-wrap: break-word;
 	transition: all 100ms linear;
@@ -66,7 +65,7 @@
 .bookRating {
 	background-color: #fff;
 	padding: var(--space-quarter);
-	border: 1px solid #eee;
+	border: 1px solid var(--light-grey);
 	border-radius: 5px;
 	display: flex;
 }

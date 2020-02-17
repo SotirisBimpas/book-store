@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap');
 
 :root {
-	/* TODO - Color Pallete */
+	/* color pallete */
+	--light-grey: #eee;
+	--light-grey-rgb: 238, 238, 238;
+	--yellow: #ffc70b;
+	--yellow-rgb: 255, 199, 11;
+	--turqoise: #3cd5e1;
+	--turqoise-rgb: 60, 213, 225;
+	--dark-turqoise: #009eaa;
+	--dark-turqoise-rgb: 0, 158, 170;
 
 	/* spacing */
 	--space-eighth: 0.2rem;
@@ -59,4 +67,8 @@ p {
 }
 .field > .ui.labeled.input {
 	width: calc(100% - var(--space-default)) !important;
+}
+.ui.breadcrumb a {
+	color: white !important;
+	font-size: 1.3rem;
 }
