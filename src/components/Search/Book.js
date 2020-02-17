@@ -9,7 +9,7 @@ export default function Book(props) {
     animate,
     index,
     book,
-    book: { title, isbn },
+    book: { title, isbn13 },
   } = props;
   const {
     bookThumbContainer,
@@ -27,7 +27,7 @@ export default function Book(props) {
   return (
     <div className={bookThumbContainer}>
       <Link to={{
-        pathname: `/product/:${isbn.replace(/ /g, '-')}`,
+        pathname: `/product/:${isbn13.replace(/ /g, '-')}`,
         state: book
       }}
       >

@@ -18,8 +18,24 @@ export default function Provider({ children }) {
         return { loading: true, error: false, books: null };
       case 'ERROR':
         return { loading: false, error: true, books: null };
-      case 'SET_BOOKS':
-        return { loading: false, error: false, books: payload };
+      case 'SET_BOOKS': {
+        const processedBookData = [...payload].map(book => (
+          {
+            author: book.author,
+            description: book.description,
+            isbn10: book.isbn.length === 10 ? book.isbn : '',
+            isbn13: book.isbn.length === 13 ? book.isbn : '',
+            pages: book.pages,
+            publisher: book.publisher,
+            rating: 0,
+            subtitle: book.subtitle,
+            title: book.title,
+            website: book.website,
+            year: book.published.split('-')[0],
+          }
+        ));
+        return { loading: false, error: false, books: processedBookData };
+      }
       case 'SEARCH_BOOKS':
         return { ...state, filteredBooks: payload };
       case 'ADD_BOOK':
@@ -51,7 +67,7 @@ export default function Provider({ children }) {
     []
   );
 
-  const searchBooks = (filteredBooks) => dispatch({ type: 'SEARCH_BOOKS', payload: filteredBooks }); 
+  const searchBooks = (filteredBooks) => dispatch({ type: 'SEARCH_BOOKS', payload: filteredBooks });
   const addBook = (addedBook) => dispatch({ type: 'ADD_BOOK', payload: addedBook });
   const updateBook = (updatedBookList) => dispatch({ type: 'UPDATE_BOOK', payload: updatedBookList });
   const actions = { searchBooks, addBook, updateBook };

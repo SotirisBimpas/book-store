@@ -7,7 +7,7 @@ export default function UserRating({ book }) {
   const { state: { books }, actions: { updateBook } } = useContext(Contect);
 
   const handleRating = (updatedBook) => {
-    const updatedBookIndex = books.findIndex(b => b.isbn === updatedBook.isbn);
+    const updatedBookIndex = books.findIndex(b => b.isbn13 === updatedBook.isbn13);
     const updatedBookList = [...books];
     updatedBookList.splice(updatedBookIndex, 1, updatedBook);
     updateBook(updatedBookList);

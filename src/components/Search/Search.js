@@ -52,13 +52,13 @@ export default function Search() {
         {showAllBooks && state.books.map((b, i) => (
           <Book
             index={i}
-            key={b.isbn}
+            key={b.isbn13}
             book={b}
             animate
           />
         ))}
         {state.filteredBooks && state.filteredBooks.map(b => (
-          <Book key={b.isbn} book={b} />
+          <Book key={b.isbn13} book={b} />
         ))}
         <div className={btnAddProduct}>
           <Link to="/add-product">+</Link>

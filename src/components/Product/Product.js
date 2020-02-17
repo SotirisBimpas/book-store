@@ -7,18 +7,18 @@ import UserRating from '../UserRating';
 import styles from './Product.module.css';
 
 export default function Product() {
-  const { state: { isbn } } = useLocation();
+  const { state: { isbn13 } } = useLocation();
   const { state: { books } } = useContext(Context);
   const [state, setState] = useState(null);
 
   useEffect(
     () => {
       if (books && books.length > 0) {
-        const book = books.find(b => b.isbn === isbn);
+        const book = books.find(b => b.isbn13 === isbn13);
         setState(book);
       }
     },
-    [books, state, isbn]
+    [books, state, isbn13]
   );
 
   const {
@@ -38,7 +38,7 @@ export default function Product() {
   const renderRelatedBookTemplate = (book) => (
     <div className={relatedProduct}>
       <Link to={{
-        pathname: `/product/:${isbn.replace(/ /g, '-')}`,
+        pathname: `/product/:${isbn13.replace(/ /g, '-')}`,
         state: book
       }}
       >
@@ -71,11 +71,11 @@ export default function Product() {
               <Button className={productButton}>Favorite</Button>
               <Button className={productButton}>share</Button>
               <p>Category: {state.category}</p>
-              <p>Year: {state.published.split('-')[0]}</p>
+              <p>Year: {state.year}</p>
               <p>Number of pages: {state.pages}</p>
               <p>Publisher: {state.publisher}</p>
-              <p>ISBN-10: {state.isbn.length === 10 && state.isbn}</p>
-              <p>ISBN-13: {state.isbn.length === 13 && state.isbn}</p>
+              <p>ISBN-10: {state.isbn10}</p>
+              <p>ISBN-13: {state.isbn13}</p>
               <Button className={productButton}>BUY</Button>
             </div>
             <div className={otherProductsContainer}>
