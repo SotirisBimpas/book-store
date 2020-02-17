@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
-import { Carousel } from 'primereact/carousel';
 import Context from '../../context';
 import UserRating from '../UserRating';
+import RelatedProducts from './RelatedProducts';
 import styles from './Product.module.css';
 
 export default function Product() {
@@ -80,12 +80,7 @@ export default function Product() {
             </div>
             <div className={otherProductsContainer}>
               <p>Other Books you may like</p>
-              <Carousel
-                value={books}
-                itemTemplate={renderRelatedBookTemplate}
-                numVisible={4}
-                numScroll={4}
-              />
+              <RelatedProducts books={books} template={renderRelatedBookTemplate} />
             </div>
           </div>
         )
