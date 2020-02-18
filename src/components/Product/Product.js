@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
 import Context from '../../context';
 import UserRating from '../UserRating';
@@ -7,14 +7,14 @@ import RelatedProducts from './RelatedProducts';
 import styles from './Product.module.css';
 
 export default function Product() {
-  const { state: { isbn13 } } = useLocation();
+  const { isbn13 } = useParams();
   const { state: { books } } = useContext(Context);
   const [state, setState] = useState(null);
 
   useEffect(
     () => {
       if (books && books.length > 0) {
-        const book = books.find(b => b.isbn13 === isbn13);
+        const book = books.find(b => b.isbn13 === isbn13.replace(':', ''));
         setState(book);
       }
     },

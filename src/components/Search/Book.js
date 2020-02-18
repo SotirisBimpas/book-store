@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import UserRating from '../UserRating';
 import styles from './Book.module.css';
@@ -11,6 +11,15 @@ export default function Book(props) {
     book,
     book: { title, isbn13 },
   } = props;
+
+  const { push } = useHistory();
+
+  const pathname = `/product/:${isbn13.replace(/ /g, '-')}`;
+
+  const handleClick = (e) => {
+    if (e.target.className.includes(bookThumb)) push(pathname);
+  };
+
   const {
     bookThumbContainer,
     bookThumb,
@@ -26,21 +35,25 @@ export default function Book(props) {
 
   return (
     <div className={bookThumbContainer}>
-      <Link to={{
-        pathname: `/product/:${isbn13.replace(/ /g, '-')}`,
-        state: book
-      }}
+      <div
+        className={bookThumb}
+        style={animation}
+        onClick={e => handleClick(e)}
       >
-        <div className={bookThumb} style={animation}>
+        <Link to={{
+          pathname: `/product/:${isbn13.replace(/ /g, '-')}`,
+          state: book
+        }}
+        >
           <div className={bookImage}>
             <img src={`/img/${book.title}.jpg`} alt="sss" />
           </div>
           <div className={bookTitle}>{title}</div>
-          <div className={bookRating}>
-            <UserRating book={book} />
-          </div>
+        </Link>
+        <div className={bookRating}>
+          <UserRating book={book} />
         </div>
-      </Link>
+      </div>
     </div>
   );
 }
