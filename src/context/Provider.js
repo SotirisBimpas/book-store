@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useCallback, useReducer } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Context from './Context';
@@ -68,7 +68,12 @@ export default function Provider({ children }) {
     []
   );
 
-  const searchBooks = (filteredBooks) => dispatch({ type: 'SEARCH_BOOKS', payload: filteredBooks });
+  const searchBooks = useCallback(
+    (filteredBooks) => {
+      dispatch({ type: 'SEARCH_BOOKS', payload: filteredBooks });
+    },
+    []
+  );
   const addBook = (addedBook) => dispatch({ type: 'ADD_BOOK', payload: addedBook });
   const updateBook = (updatedBookList) => dispatch({ type: 'UPDATE_BOOK', payload: updatedBookList });
   const actions = { searchBooks, addBook, updateBook };

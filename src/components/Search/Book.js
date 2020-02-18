@@ -58,8 +58,12 @@ export default function Book(props) {
   );
 }
 
+Book.defaultProps = {
+  animate: true,
+};
+
 Book.propTypes = {
-  animate: PropTypes.bool.isRequired,
+  animate: PropTypes.bool,
   index: PropTypes.number.isRequired,
   book: PropTypes.object.isRequired,
 };

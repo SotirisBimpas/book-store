@@ -46,7 +46,7 @@ export default function Search() {
         searchBooks(state.books);
       }
     },
-    [filters]
+    [filters, state.books, searchBooks]
   );
 
   const {
@@ -124,8 +124,8 @@ export default function Search() {
             animate
           />
         ))}
-        {state.filteredBooks && state.filteredBooks.map(b => (
-          <Book key={b.isbn13} book={b} />
+        {state.filteredBooks && state.filteredBooks.map((b, i) => (
+          <Book key={b.isbn13} book={b} index={i}/>
         ))}
       </div>
       <div className={btnAddProduct}>

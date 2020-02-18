@@ -224,7 +224,7 @@ export default function AddProduct() {
               value, instructions, error, success
             } = state[key];
             return (
-              <Form.Field>
+              <Form.Field key={key}>
                 <Input
                   className={`${key}-input`}
                   onChange={e => setState({
