@@ -24,22 +24,22 @@ export default function AddProduct() {
       error: false,
       success: false,
       instructions: 'max 512 characters and must start with the first letter be uppercase',
-      validation: /^.{1,512}$/,
+      validation: /^[A-Z].{1,512}$/,
       required: true,
     },
     categories: {
       value: '',
       error: false,
       success: false,
-      instructions: 'max 4 categories, seperate with comma',
-      validation: /^.{5,60}$/,
+      instructions: 'max 4 categories, seperate with ","',
+      validation: /^.{1,60}$/,
       required: true,
     },
-    'author(s)': {
+    author: {
       value: '',
       error: false,
       success: false,
-      instructions: 'max 60 characters min 5, seperate with comma',
+      instructions: 'max 60 characters min 5, seperate authors with ","',
       validation: /^.{5,60}$/,
       required: true,
     },
@@ -47,7 +47,7 @@ export default function AddProduct() {
       value: '',
       error: false,
       success: false,
-      instructions: 'max 60 characters min 5',
+      instructions: 'max 60 characters min 5, max 4 categories seperated with ","',
       validation: /^.{5,60}$/,
       required: true,
     },
@@ -132,7 +132,21 @@ export default function AddProduct() {
   };
 
   const validateValue = (value, key) => {
-    const isValid = state[key].validation.test(value);
+    let isValid;
+    if (key === 'categories') {
+      const values = value.split(',');
+      const isLengthValid = values.length <= 4;
+      const validatedValues = values.map(v => state[key].validation.test(v));
+      const isValuesArrayValid = !validatedValues.some(v => !v);
+      isValid = isLengthValid && isValuesArrayValid;
+    } else if (key === 'author(s)') {
+      const values = value.split(',');
+      const validatedValues = values.map(v => state[key].validation.test(v));
+      const isValuesArrayValid = !validatedValues.some(v => !v);
+      isValid = isValuesArrayValid;
+    } else {
+      isValid = state[key].validation.test(value);
+    }
     setState({ ...state, [key]: { ...state[key], error: !isValid, success: isValid } });
   };
 
@@ -217,7 +231,9 @@ export default function AddProduct() {
                     ...state,
                     [key]: {
                       ...state[key],
-                      value: e.target.value
+                      value: key === 'categories' || key === 'author'
+                        ? [e.target.value.split(',')]
+                        : e.target.value
                     }
                   })}
                   onBlur={e => validateValue(e.target.value, key)}
@@ -227,10 +243,6 @@ export default function AddProduct() {
                   error={error}
                   icon={success && 'check'}
                 />
-                {
-                  (key === 'categories' || key === 'author(s)')
-                    && <Icon name="plus" /> // TODO add new property functionality
-                }
                 {value && error && <p className={errorMessage}>{instructions}</p>}
               </Form.Field>
             );

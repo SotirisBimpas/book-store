@@ -21,13 +21,14 @@ export default function Provider({ children }) {
       case 'SET_BOOKS': {
         const processedBookData = [...payload].map(book => (
           {
-            author: book.author,
+            author: [...book.author.split(',')],
             description: book.description,
             isbn10: book.isbn.length === 10 ? book.isbn : '',
             isbn13: book.isbn.length === 13 ? book.isbn : '',
             pages: book.pages,
             publisher: book.publisher,
             rating: 0,
+            categories: [...book.author.split(',')],
             subtitle: book.subtitle,
             title: book.title,
             website: book.website,

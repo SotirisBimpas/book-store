@@ -57,11 +57,11 @@ export default function Product() {
           <div className={productContainer}>
             <div className={productBasicInfo}>
               <div className={productImageContainer}>
-                <img src={`/img/${state.title}.jpg`} alt="sss" className={productImage} />
+                <img src={`/img/${state.title}.jpg`} alt={state.title} className={productImage} />
               </div>
               <div className={productAuthor}>
-                <Icon name="user" circular size="big" />
-                <p>{state.author}</p>
+                <Icon name="user" size="big" />
+                <p>{state.author.join(', ')}</p>
               </div>
               <UserRating book={state} />
             </div>
@@ -70,7 +70,7 @@ export default function Product() {
               <p className="title">{state.description}</p>
               <Button className={productButton}>Favorite</Button>
               <Button className={productButton}>share</Button>
-              <p>Category: {state.category}</p>
+              <p>Category: {state.categories.join(', ')}</p>
               <p>Year: {state.year}</p>
               <p>Number of pages: {state.pages}</p>
               <p>Publisher: {state.publisher}</p>

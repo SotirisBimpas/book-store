@@ -1,6 +1,6 @@
 .formContainer { 
   height: 100%;
-  overflow-y: scroll;
+  max-width: 1600px;
 }
 .addBookForm {
   padding: var(--space-half);
@@ -73,7 +73,7 @@
   color: green;
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1000px) {
   .addBookForm {
     padding: var(--space-half);
     padding-bottom: 0;
@@ -115,5 +115,10 @@
     grid-column: 1;
     grid-row: 12;
   }
-} 
+}
+@media screen and (max-height: 849px) {
+  .formContainer {
+    overflow-y: scroll;
+  }
+}
 

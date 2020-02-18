@@ -80,7 +80,7 @@ p {
 	font-size: 1.3rem;
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1000px) {
 	.field {
 		margin-bottom: var(--space-default) !important;
 		grid-column: 1 / 3;
