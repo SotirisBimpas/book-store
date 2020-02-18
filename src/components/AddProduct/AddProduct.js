@@ -189,7 +189,7 @@ export default function AddProduct() {
 
   const inputRef = useRef();
 
-  const renderSubmitButton = () => (
+  const renderSubmitImageButton = () => (
     <>
       <Button
         className={addImageBtn}
@@ -248,10 +248,15 @@ export default function AddProduct() {
             );
           })}
           <Form.Field className={submitBtnContainer}>
-            <Button className={submitBtn} onClick={() => handleSubmit(state)}>Submit</Button>
+            <Button
+              className={submitBtn}
+              onClick={() => handleSubmit(state)}
+            >
+              Add Book
+            </Button>
           </Form.Field>
           <Form.Field className={addImageBtnContainer}>
-            {renderSubmitButton()}
+            {renderSubmitImageButton()}
           </Form.Field>
         </Form>
         {successMessageIsOpen && renderSuccessMessage()}

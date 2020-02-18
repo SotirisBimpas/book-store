@@ -1,6 +1,7 @@
 .formContainer { 
   height: 100%;
-  max-width: 1600px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 .addBookForm {
   padding: var(--space-half);
