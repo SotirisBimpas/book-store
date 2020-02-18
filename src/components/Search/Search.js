@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from 'semantic-ui-react';
+import { Icon, Loader, Segment, Dimmer } from 'semantic-ui-react';
 import Context from '../../context';
 import Book from './Book';
 import styles from './Search.module.css';
@@ -27,6 +27,7 @@ export default function Search() {
     filterIcon,
     bookList,
     btnAddProduct,
+    loader,
   } = styles;
 
   const showAllBooks = !state.filteredBooks && state.books;
@@ -46,9 +47,15 @@ export default function Search() {
         <p>Filters</p>
         <Icon name="filter" size="small" className={filterIcon} />
       </div>
+      {state.loading && (
+        <Segment className={loader}>
+          <Dimmer active>
+            <Loader>loading...</Loader>
+          </Dimmer>
+        </Segment>
+      )}
+      {state.error && <p>Error...</p>}
       <div className={bookList}>
-        {state.loading && <p>loading...</p>}
-        {state.error && <p>Error...</p>}
         {showAllBooks && state.books.map((b, i) => (
           <Book
             index={i}

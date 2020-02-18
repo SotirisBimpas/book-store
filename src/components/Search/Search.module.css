@@ -1,3 +1,11 @@
+.loader {
+	width: calc(100% - var(--space-double));
+	height: calc(100% - 5.5rem - var(--space-default));
+	margin: 0 !important;
+	margin-left: var(--space-default) !important;
+	padding: 0 !important;
+	border: 1px solid red;
+}
 .searchbarContainer {
 	display: flex;
 	align-items: center;
