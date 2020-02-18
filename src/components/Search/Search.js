@@ -110,7 +110,7 @@ export default function Search() {
       <div className={bookList}>
         {filtersAreOpen && state.books && (
           <Filters
-            options={state.books.map(b => { return b.publisher })}
+            options={state.books.map(b => b.publisher)}
             filters={filters}
             setFilters={setFilters}
             setFiltersAreOpen={setFiltersAreOpen}
@@ -127,9 +127,9 @@ export default function Search() {
         {state.filteredBooks && state.filteredBooks.map(b => (
           <Book key={b.isbn13} book={b} />
         ))}
-        <div className={btnAddProduct}>
-          <Link to="/add-product">+</Link>
-        </div>
+      </div>
+      <div className={btnAddProduct}>
+        <Link to="/add-product">+</Link>
       </div>
     </>
   );

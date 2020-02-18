@@ -99,8 +99,8 @@
 	box-shadow: 0 5px 15px rgba(var(--yellow-rgb), .2);
 	border-radius: 50%;
 	position: absolute;
-	bottom: calc(8vh + var(--space-half));
-	right: var(--space-double);
+	bottom: calc(5% + var(--space-half));
+	right: calc(var(--space-double) + var(--space-half));
 	background-color: #fff;
 	font-size: 3rem;
 	font-weight: var(--weight-bolder);
