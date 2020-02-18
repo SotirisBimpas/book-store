@@ -5,7 +5,10 @@ import styles from './Header.module.css';
 
 export default function Header() {
   const { location: { pathname } } = useHistory();
-  const crumbs = pathname.split(':')[0].split('/').filter(c => c !== '');
+  const crumbs = pathname.split('/').slice(0, 2).filter(c => c !== '');
+  const breadcrumb = crumbs.includes('product')
+    ? pathname.split('/')[2]
+    : [...crumbs].join('/');
   const { logo, breadcrumbs } = styles;
 
   return (
@@ -17,9 +20,9 @@ export default function Header() {
         </Breadcrumb.Section>
         <Breadcrumb.Divider />
         {crumbs.length > 0 && crumbs.map(
-          (path, i) => (
+          (path) => (
             <Breadcrumb.Section key={path}>
-              <Link to={`${[...crumbs].slice(0, i + 1).join('/')}`}>
+              <Link to={breadcrumb}>
                 {path}
               </Link>
               <Breadcrumb.Divider />

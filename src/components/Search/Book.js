@@ -14,7 +14,7 @@ export default function Book(props) {
 
   const { push } = useHistory();
 
-  const pathname = `/product/:${isbn13.replace(/ /g, '-')}`;
+  const pathname = `/product/${isbn13}`;
 
   const handleClick = (e) => {
     if (e.target.className.includes(bookThumb)) push(pathname);
@@ -41,7 +41,7 @@ export default function Book(props) {
         onClick={e => handleClick(e)}
       >
         <Link to={{
-          pathname: `/product/:${isbn13.replace(/ /g, '-')}`,
+          pathname: `/product/${isbn13}`,
           state: book
         }}
         >

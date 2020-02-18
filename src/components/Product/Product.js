@@ -14,7 +14,7 @@ export default function Product() {
   useEffect(
     () => {
       if (books && books.length > 0) {
-        const book = books.find(b => b.isbn13 === isbn13.replace(':', ''));
+        const book = books.find(b => b.isbn13 === isbn13);
         setState(book);
       }
     },
@@ -38,7 +38,7 @@ export default function Product() {
   const renderRelatedBookTemplate = (book) => (
     <div className={relatedProduct}>
       <Link to={{
-        pathname: `/product/:${isbn13.replace(/ /g, '-')}`,
+        pathname: `/product/${book.isbn13}`,
         state: book
       }}
       >

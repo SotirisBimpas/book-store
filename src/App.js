@@ -19,7 +19,7 @@ function App() {
           <Layout>
             <Switch>
               <Route exact path="/search" component={Search} />
-              <Route path="/product/:isbn13" component={Product} />
+              <Route exact path="/product/:isbn13" component={Product} />
               <Route path="/add-product" component={AddProduct} />
               <Redirect to="/search" />
             </Switch>
