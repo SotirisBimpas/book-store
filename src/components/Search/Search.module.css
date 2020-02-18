@@ -44,22 +44,41 @@
 	color: var(--dark-turqoise);
 }
 	
-.filters {
-	width: 6.6rem;
+.filtersContainer {
+	width: auto;
 	height: 2.5rem;
-	padding: 0 var(--space-half);
-	border-radius: 5px;
 	margin: var(--space-half) 0;
 	margin-left: var(--space-default);
 	font-weight: var(--weight-regular);
 	font-size: 1.4rem;
 	color: #fff;
+	display: flex;
+	align-items: center;
+}
+.filtersBtn {
+	width: 6.6rem;
+	height: 100%;
+	padding: 0 var(--space-half);
+	margin-right: var(--space-half);
+	border-radius: 5px;
 	background-color: var(--dark-turqoise);
 	display: flex;
 	align-items: center;
 }
 .filterIcon {
 	transform: translateY(2px);
+}
+.clearFiltersBtn {
+	width: 6.6rem;
+	height: 100%;
+	border: 1px solid red;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	color: red;
+}
+.clearFiltersBtn > p {
+	font-size: .8rem;
 }
 .bookList {
 	width: calc(100% - var(--space-double) + var(--space-half));
@@ -70,6 +89,7 @@
 	align-content: flex-start;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	position: relative;
 }
 .btnAddProduct {
 	height: 4rem;
