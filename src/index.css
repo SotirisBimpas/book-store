@@ -7,7 +7,7 @@
 	--light-grey-rgb: 238, 238, 238;
 	--yellow: #ffc70b;
 	--yellow-rgb: 255, 199, 11;
-	--turqoise: #3cd5e1;
+	--turqoise: #0bebff;
 	--turqoise-rgb: 60, 213, 225;
 	--dark-turqoise: #009eaa;
 	--dark-turqoise-rgb: 0, 158, 170;
@@ -66,10 +66,23 @@ p {
 .field > .ui.labeled.input {
 	width: calc(100% - var(--space-default)) !important;
 }
-.field > .ui.labeled.input {
-	width: calc(100% - var(--space-default)) !important;
+.ui.labeled.input:not([class*="corner labeled"]) .label:first-child {
+	background-color: #fff !important;
+	color: var(--dark-turqoise) !important;
+	border: 1px solid var(--dark-turqoise) !important;
+	border-right: 0 !important;;
+}
+.ui.labeled.input:not([class*="corner labeled"]) .label:first-child+input {	
+	border: 1px solid var(--dark-turqoise) !important;
 }
 .ui.breadcrumb a {
 	color: white !important;
 	font-size: 1.3rem;
+}
+
+@media screen and (max-width: 1250px) {
+	.field {
+		margin-bottom: var(--space-default) !important;
+		grid-column: 1 / 3;
+	}
 }
