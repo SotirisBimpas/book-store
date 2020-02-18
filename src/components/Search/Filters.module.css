@@ -25,11 +25,14 @@
 .filter {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	margin-bottom: var(--space-half);
 }
 .filterInput {
 	border: 1px solid var(--dark-turqoise);
+	border-radius: 5px;
 	width: 40% !important;
+	height: 100% !important;
 }
 .yearFilterInput > .label {
 	width: 10%;

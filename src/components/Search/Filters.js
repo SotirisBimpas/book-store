@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Rating, Dropdown, Button } from 'semantic-ui-react';
+import { Rating, Dropdown, Button, Input } from 'semantic-ui-react';
 import styles from './Filters.module.css';
 
 export default function Filters({ options, setFilters, setFiltersAreOpen }) {
   const initialState = {
-    from: null,
-    to: null,
+    from: '',
+    to: '',
     rating: 0,
     publisher: null
   };
@@ -29,7 +29,7 @@ export default function Filters({ options, setFilters, setFiltersAreOpen }) {
       <p className={filterLabel}>Year</p>
       <div className={filter}>
         <p>from</p>
-        <input
+        <Input
           className={filterInput}
           value={values.from}
           onChange={e => setValues({
