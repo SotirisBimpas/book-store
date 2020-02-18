@@ -6,6 +6,7 @@ header {
 }
 .logo {
 	color: #fff;
+	font-family: 'Indie Flower', cursive;
 	font-size: 5rem;
 	font-weight: var(--weight-bolder);
 	text-align: center;
