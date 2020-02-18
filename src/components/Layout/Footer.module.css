@@ -5,3 +5,9 @@ footer {
 	background-color: var(--dark-turqoise);
 	color: #fff;
 }
+footer > p {
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}

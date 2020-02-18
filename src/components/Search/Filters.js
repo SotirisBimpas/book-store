@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Rating, Dropdown, Button, Input } from 'semantic-ui-react';
 import styles from './Filters.module.css';
 
-export default function Filters({ options, setFilters, setFiltersAreOpen }) {
+export default function Filters({ publisherNames, setFilters, setFiltersAreOpen }) {
   const initialState = {
     from: '',
     to: '',
@@ -12,8 +12,9 @@ export default function Filters({ options, setFilters, setFiltersAreOpen }) {
   };
   const [values, setValues] = useState(initialState);
 
-  const uniqueOptions = options.filter((item, index) => {
-    return options.indexOf(item) === index;
+  // removes duplicated values from publishers array
+  const uniquefiedPublisherNames = publisherNames.filter((item, index) => {
+    return publisherNames.indexOf(item) === index;
   });
 
   const {
@@ -60,7 +61,7 @@ export default function Filters({ options, setFilters, setFiltersAreOpen }) {
       <div className={filter}>
         <Dropdown placeholder={values.publisher || 'Select Publisher'}>
           <Dropdown.Menu>
-            {uniqueOptions.map(option => (
+            {uniquefiedPublisherNames.map(option => (
               <Dropdown.Item
                 key={option}
                 text={option}
@@ -85,7 +86,7 @@ export default function Filters({ options, setFilters, setFiltersAreOpen }) {
 }
 
 Filters.propTypes = {
-  options: PropTypes.array.isRequired,
+  publisherNames: PropTypes.array.isRequired,
   setFilters: PropTypes.func.isRequired,
   setFiltersAreOpen: PropTypes.func.isRequired,
 };

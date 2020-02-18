@@ -16,6 +16,8 @@ export default function Book(props) {
 
   const pathname = `/product/${isbn13}`;
 
+  // links to books product page when clicking in areas inside
+  // book component not wrapped with Link component
   const handleClick = (e) => {
     if (e.target.className.includes(bookThumb)) push(pathname);
   };

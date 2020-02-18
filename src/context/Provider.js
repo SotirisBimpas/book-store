@@ -19,6 +19,8 @@ export default function Provider({ children }) {
       case 'ERROR':
         return { loading: false, error: true, books: null };
       case 'SET_BOOKS': {
+        // manipulates book objects in order to have the same schema
+        // with newly added books form add produc page
         const processedBookData = [...payload].map(book => (
           {
             author: [...book.author.split(',')],
@@ -37,7 +39,7 @@ export default function Provider({ children }) {
         ));
         return { loading: false, error: false, books: processedBookData };
       }
-      case 'SEARCH_BOOKS':
+      case 'UPDATE_BOOK_LIST':
         return { ...state, filteredBooks: payload };
       case 'ADD_BOOK':
         return { ...state, books: [...state.books, payload] };
@@ -50,6 +52,7 @@ export default function Provider({ children }) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  //  gets books data and sets all the proper app states while retrieving them
   useEffect(
     () => {
       dispatch({ type: 'LOADING', payload: {} });
@@ -68,15 +71,15 @@ export default function Provider({ children }) {
     []
   );
 
-  const searchBooks = useCallback(
+  const updateBooklist = useCallback(
     (filteredBooks) => {
-      dispatch({ type: 'SEARCH_BOOKS', payload: filteredBooks });
+      dispatch({ type: 'UPDATE_BOOK_LIST', payload: filteredBooks });
     },
     []
   );
   const addBook = (addedBook) => dispatch({ type: 'ADD_BOOK', payload: addedBook });
   const updateBook = (updatedBookList) => dispatch({ type: 'UPDATE_BOOK', payload: updatedBookList });
-  const actions = { searchBooks, addBook, updateBook };
+  const actions = { updateBooklist, addBook, updateBook };
 
   return (
     <Context.Provider value={{ state, actions }}>

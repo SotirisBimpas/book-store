@@ -9,10 +9,12 @@ import Book from './Book';
 import styles from './Search.module.css';
 
 export default function Search() {
-  const { state, actions: { searchBooks } } = useContext(Context);
+  const { state, actions: { updateBooklist } } = useContext(Context);
   const [filtersAreOpen, setFiltersAreOpen] = useState(false);
   const [filters, setFilters] = useState(null);
 
+  // checks and retutns the book mathcing the search query
+  // and updates the booklist
   const handleSearchChange = (query) => {
     const filteredBooks = state.books.filter(
       (book) => (
@@ -22,9 +24,11 @@ export default function Search() {
         || book.author.includes(query)
       )
     );
-    searchBooks(filteredBooks);
+    updateBooklist(filteredBooks);
   };
 
+  // checks and retutns the book mathcing the filters
+  // and updates the booklist
   useEffect(
     () => {
       if (state.books && filters) {
@@ -41,12 +45,12 @@ export default function Search() {
         if (filters.publisher) {
           filteredBooks = state.books.filter(book => book.publisher === filters.publisher);
         }
-        searchBooks(filteredBooks);
+        updateBooklist(filteredBooks);
       } else {
-        searchBooks(state.books);
+        updateBooklist(state.books);
       }
     },
-    [filters, state.books, searchBooks]
+    [filters, state.books, updateBooklist]
   );
 
   const {
@@ -110,7 +114,7 @@ export default function Search() {
       <div className={bookList}>
         {filtersAreOpen && state.books && (
           <Filters
-            options={state.books.map(b => b.publisher)}
+            publisherNames={state.books.map(b => b.publisher)}
             filters={filters}
             setFilters={setFilters}
             setFiltersAreOpen={setFiltersAreOpen}

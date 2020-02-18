@@ -11,6 +11,7 @@ export default function Product() {
   const { state: { books } } = useContext(Context);
   const [state, setState] = useState(null);
 
+  // loads the book data matching the url params
   useEffect(
     () => {
       if (books && books.length > 0) {

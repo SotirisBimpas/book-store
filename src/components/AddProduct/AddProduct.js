@@ -108,6 +108,7 @@ export default function AddProduct() {
     setSuccessMesssageIsOpen(false);
   };
 
+  // checks if all values
   const handleSubmit = () => {
     const errors = Object.keys(state).filter(key => {
       const { value, validation, required } = state[key];
@@ -131,6 +132,7 @@ export default function AddProduct() {
     }
   };
 
+  // checks if the given value type passes it's validation regex
   const validateValue = (value, key) => {
     let isValid;
     if (key === 'categories') {
@@ -156,6 +158,7 @@ export default function AddProduct() {
     setState({ ...state, image: { ...state.image, value: name } });
   };
 
+  // closes the success message automatically after 1000ms
   useEffect(
     () => {
       const timer = setTimeout(() => closeSuccessMesssage(), 1000);
@@ -241,7 +244,7 @@ export default function AddProduct() {
                   placeholder={instructions}
                   label={key}
                   error={error}
-                  icon={success && 'check'}
+                  icon={(error && 'times') || (success && 'check')}
                 />
                 {value && error && <p className={errorMessage}>{instructions}</p>}
               </Form.Field>

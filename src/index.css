@@ -79,6 +79,12 @@ p {
 	color: white !important;
 	font-size: 1.3rem;
 }
+.ui.icon.labeled.input > .check.icon {
+	color: green !important;
+}
+.ui.icon.labeled.input > .times.icon {
+	color: red !important;
+}
 
 @media screen and (max-width: 1000px) {
 	.field {
