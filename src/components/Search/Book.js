@@ -48,7 +48,7 @@ export default function Book(props) {
         }}
         >
           <div className={bookImage}>
-            <img src={`/img/${book.title}.jpg`} alt="sss" />
+            <img src={`img/${book.title}.jpg`} alt={book.title} />
           </div>
           <div className={bookTitle}>{title}</div>
         </Link>
