@@ -48,8 +48,8 @@
   transform: translate(-50%, -50%);
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgba(150, 150, 150, .7);
-  width: 50%;
-  height: 50%;
+  width: 350px;
+  height: 350px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -59,7 +59,7 @@
   animation: enter 300ms both 1;
 }
 .successMessage > p {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: var(--weight-bolder);
   margin-bottom: var(--space-double) !important;
 }
