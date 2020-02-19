@@ -69,15 +69,39 @@ export default function Product() {
             <div className={productInfo}>
               <h2 className={productTitle}>{state.title}</h2>
               <p className="title">{state.description}</p>
-              <Button className={productButton}>Favorite</Button>
-              <Button className={productButton}>share</Button>
+              <Button
+                className={productButton}
+                style={{
+                  backgroundColor: 'var(--dark-turqoise)',
+                  color: '#fff'
+                }}
+              >
+                Favorite
+              </Button>
+              <Button
+                className={productButton}
+                style={{
+                  backgroundColor: 'var(--dark-turqoise)',
+                  color: '#fff'
+                }}
+              >
+                share
+              </Button>
               <p>Category: {state.categories.join(', ')}</p>
               <p>Year: {state.year}</p>
               <p>Number of pages: {state.pages}</p>
               <p>Publisher: {state.publisher}</p>
               <p>ISBN-10: {state.isbn10}</p>
               <p>ISBN-13: {state.isbn13}</p>
-              <Button className={productButton}>BUY</Button>
+              <Button
+                className={productButton}
+                style={{
+                  backgroundColor: 'var(--turqoise)',
+                  color: '#fff'
+                }}
+              >
+                BUY
+              </Button>
             </div>
             <div className={otherProductsContainer}>
               <p>Other Books you may like</p>
